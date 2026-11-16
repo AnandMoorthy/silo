@@ -3,6 +3,7 @@ import { chapterProgressLabel } from '../engine'
 import { WORLD_ACCENTS } from '../content/loadWorlds'
 import { listWorldStates, useSaveStore } from '../store/saveStore'
 import { AppShell } from '../components/AppShell'
+import { WorldMotif } from '../components/WorldMotif'
 
 function formatVisited(iso: string | null): string {
   if (!iso) return 'Not visited yet'
@@ -45,18 +46,23 @@ export function HomeScreen() {
               style={{ ['--accent' as string]: accent }}
               onClick={() => enterWorld(content.id)}
             >
-              <div className="world-card__top">
-                <h2>{content.title}</h2>
-                {state.status === 'complete' ? (
-                  <span className="badge">Story complete</span>
-                ) : changed ? (
-                  <span className="badge badge--pulse">Something changed</span>
-                ) : null}
-              </div>
-              <p>{content.tagline}</p>
-              <div className="world-card__meta">
-                <span>Chapter {chapterProgressLabel(content, state)}</span>
-                <span>{formatVisited(state.lastExitAt)}</span>
+              <div className="world-card__body">
+                <div className="world-card__copy">
+                  <div className="world-card__top">
+                    <h2>{content.title}</h2>
+                    {state.status === 'complete' ? (
+                      <span className="badge">Story complete</span>
+                    ) : changed ? (
+                      <span className="badge badge--pulse">Something changed</span>
+                    ) : null}
+                  </div>
+                  <p>{content.tagline}</p>
+                  <div className="world-card__meta">
+                    <span>Chapter {chapterProgressLabel(content, state)}</span>
+                    <span>{formatVisited(state.lastExitAt)}</span>
+                  </div>
+                </div>
+                <WorldMotif worldId={content.id} size="md" />
               </div>
             </button>
           )

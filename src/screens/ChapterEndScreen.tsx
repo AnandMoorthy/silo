@@ -15,7 +15,7 @@ export function ChapterEndScreen({
   const accent = WORLD_ACCENTS[worldId] ?? '#9aa4b2'
 
   return (
-    <AppShell accent={accent} title={world.title}>
+    <AppShell accent={accent} title={world.title} worldId={worldId} showMotif>
       <p className="lede">
         You leave. This world keeps going without you.
       </p>

@@ -20,7 +20,7 @@ export function ResultScreen({
   const resultText = lastResult?.logEntry.result ?? 'Done.'
 
   return (
-    <AppShell accent={accent} title={world.title}>
+    <AppShell accent={accent} title={world.title} worldId={worldId}>
       <p className="result-line">{resultText}</p>
       <StatBars
         labels={world.statLabels}

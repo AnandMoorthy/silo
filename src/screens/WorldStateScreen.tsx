@@ -18,7 +18,7 @@ export function WorldStateScreen({ worldId }: { worldId: string }) {
     .filter((label): label is string => Boolean(label))
 
   return (
-    <AppShell accent={accent} title={world.title}>
+    <AppShell accent={accent} title={world.title} worldId={worldId} showMotif>
       <p className="role">{world.role}</p>
 
       <StatBars labels={world.statLabels} values={state.stats} accent={accent} />

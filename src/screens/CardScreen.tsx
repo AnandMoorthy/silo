@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, type PanInfo, useMotionValue, useTransform } from 'framer-motion'
 import { AppShell } from '../components/AppShell'
+import { WorldMotif } from '../components/WorldMotif'
 import { WORLD_ACCENTS, requireWorld } from '../content/loadWorlds'
 import { currentCard, currentChapter } from '../engine'
 import { useSaveStore } from '../store/saveStore'
@@ -18,7 +19,7 @@ export function CardScreen({ worldId }: { worldId: string }) {
 
   if (!card || !chapter) {
     return (
-      <AppShell accent={accent} title={world.title}>
+      <AppShell accent={accent} title={world.title} worldId={worldId} showMotif>
         <p>No card to play.</p>
       </AppShell>
     )
@@ -36,7 +37,7 @@ export function CardScreen({ worldId }: { worldId: string }) {
   }
 
   return (
-    <AppShell accent={accent} title={chapter.title}>
+    <AppShell accent={accent} title={chapter.title} worldId={worldId}>
       <motion.div
         className="play-card"
         style={{ x, rotate }}
@@ -45,6 +46,9 @@ export function CardScreen({ worldId }: { worldId: string }) {
         dragElastic={0.9}
         onDragEnd={onDragEnd}
       >
+        <div className="play-card__motif" aria-hidden="true">
+          <WorldMotif worldId={worldId} size="lg" />
+        </div>
         <p className="speaker">{card.speaker}</p>
         <p className="card-text">{card.text}</p>
       </motion.div>

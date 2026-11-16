@@ -18,7 +18,7 @@ export function StoryLogScreen({ worldId }: { worldId: string }) {
   }
 
   return (
-    <AppShell accent={accent} title="Story log">
+    <AppShell accent={accent} title="Story log" worldId={worldId} showMotif>
       {state.log.length === 0 ? (
         <p className="muted">No choices yet in this world.</p>
       ) : (
