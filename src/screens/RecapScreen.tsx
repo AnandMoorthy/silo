@@ -24,7 +24,7 @@ export function RecapScreen({ worldId }: { worldId: string }) {
   const before = statsBeforeUnseenRecap(world, state)
 
   return (
-    <AppShell accent={accent} title="Since you left">
+    <AppShell accent={accent} title="Since you left" worldId={worldId} showMotif>
       <p className="lede">
         {timeSince(state.lastExitAt)} since you were last in {world.title}.
       </p>
