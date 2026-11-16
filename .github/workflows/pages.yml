@@ -4,7 +4,7 @@ on:
     branches: [main]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 concurrency:
@@ -20,12 +20,34 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - name: Build production site
+        run: npm run build
         env:
           GITHUB_PAGES: "true"
+      - name: Assert dist is production (not Vite source)
+        run: node scripts/assert-pages-dist.mjs
+      - name: Add .nojekyll for GitHub Pages
+        run: touch dist/.nojekyll
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
+      # Legacy Pages (Deploy from branch → main /) ignores the Actions artifact and
+      # serves the repo root. Keep root index.html + assets/ in sync with dist/ until
+      # Settings → Pages → Source is switched to "GitHub Actions".
+      - name: Sync dist to repo root for legacy branch Pages
+        run: |
+          node scripts/sync-pages-root.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html favicon.svg assets .nojekyll
+          if git diff --cached --quiet; then
+            echo "Root already matches dist; no sync commit"
+            exit 0
+          fi
+          git commit -m "chore(pages): sync production build to root [skip ci]"
+          git push origin HEAD:main
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -33,5 +55,16 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Prefer GitHub Actions as Pages source
+        continue-on-error: true
+        run: |
+          # Needs admin; Cursor/GitHub App tokens usually cannot flip this.
+          # Safe to try so a future token with rights enables Actions automatically.
+          curl -sS -X PUT \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "Content-Type: application/json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages" \
+            -d '{"build_type":"workflow"}' || true
       - id: deployment
         uses: actions/deploy-pages@v4
