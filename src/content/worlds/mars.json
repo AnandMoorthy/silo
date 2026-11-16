@@ -1,0 +1,126 @@
+{
+  "id": "mars",
+  "title": "Red Dust",
+  "role": "Water rationer",
+  "tagline": "You ration water for a Mars settlement of 212 people.",
+  "statLabels": {
+    "heart": "Heart",
+    "coin": "Reserves",
+    "bonds": "Trust",
+    "spirit": "Resolve"
+  },
+  "startStats": { "heart": 50, "coin": 50, "bonds": 50, "spirit": 50 },
+  "facts": {
+    "crop_planted": "The new greenhouse crop is in the ground.",
+    "public_probe": "The Tank 3 probe was public."
+  },
+  "chapters": [
+    {
+      "title": "Allocation Day",
+      "cards": [
+        {
+          "id": "md-1-1",
+          "speaker": "Greenhouse crew",
+          "text": "The greenhouse crew wants double water for a new crop.",
+          "a": {
+            "label": "Approve it",
+            "effects": { "coin": -15, "bonds": 10 },
+            "sets": ["crop_planted"],
+            "result": "They leave already arguing about trellis height.",
+            "later": "The tomatoes came up red. The whole colony ate one each."
+          },
+          "b": {
+            "label": "Deny it",
+            "effects": { "coin": 5, "bonds": -10 },
+            "result": "The request is stamped closed. Nobody thanks you.",
+            "later": "The greenhouse crew stopped saying hello."
+          }
+        },
+        {
+          "id": "md-1-2",
+          "speaker": "The medic",
+          "text": "A child's fever won't break. The medic wants a shower ration for her family.",
+          "a": {
+            "label": "Grant it",
+            "effects": { "heart": 10, "coin": -5 },
+            "result": "You mark the exception. The medic is already moving.",
+            "later": "Mira is fine. Her mother left a drawing on your door."
+          },
+          "b": {
+            "label": "Rules are rules",
+            "effects": { "spirit": 10, "heart": -10 },
+            "result": "You hold the line. The corridor feels longer afterward.",
+            "later": "Mira recovered anyway. Her mother crosses the corridor to avoid you."
+          }
+        },
+        {
+          "id": "md-1-3",
+          "speaker": "Tank 3",
+          "text": "Someone has been skimming from Tank 3.",
+          "a": {
+            "label": "Investigate publicly",
+            "effects": { "spirit": 10, "bonds": -5 },
+            "sets": ["public_probe"],
+            "result": "You post the notice. Conversations stop when you pass.",
+            "later": "It was the night engineer. The colony watched him lose his post."
+          },
+          "b": {
+            "label": "Handle it quietly",
+            "effects": { "bonds": 5, "spirit": -5 },
+            "result": "You change a lock and wait. No speeches.",
+            "later": "The skimming stopped. You never learned who it was."
+          }
+        }
+      ]
+    },
+    {
+      "title": "Nine Days Without Sun",
+      "cards": [
+        {
+          "id": "md-2-1",
+          "speaker": "Weather desk",
+          "text": "A dust storm will cut the solar arrays for 9 days.",
+          "a": {
+            "label": "Cut everyone's ration by a third",
+            "effects": { "coin": 15, "bonds": -10 },
+            "result": "The announcement lands like grit in the teeth.",
+            "later": "You got through. People remember who was thirsty."
+          },
+          "b": {
+            "label": "Keep rations, pray it passes",
+            "effects": { "coin": -15, "heart": 5 },
+            "result": "You leave the numbers alone and watch the sky go red.",
+            "later": "Tank 3 ran dry on day 8. It was close."
+          }
+        },
+        {
+          "id": "md-2-2",
+          "requires": "crop_planted",
+          "speaker": "Greenhouse",
+          "text": "The greenhouse can trade crop for water from the next settlement.",
+          "a": {
+            "label": "Trade",
+            "effects": { "coin": 10, "bonds": 5 },
+            "result": "Crates leave on the rover. A promise returns with them.",
+            "later": "The two settlements now share a road. Kids race on it."
+          },
+          "b": {
+            "label": "Keep the food",
+            "effects": { "heart": 5 },
+            "result": "You store the harvest. The pantry looks less empty.",
+            "later": "The colony ate well through the storm."
+          }
+        }
+      ]
+    }
+  ],
+  "endings": [
+    {
+      "if": "bonds>=55",
+      "text": "They elect you to the council. You still check the tanks every night."
+    },
+    {
+      "text": "The next supply ship brings your replacement. You leave Mars with clean hands and few friends."
+    }
+  ]
+}

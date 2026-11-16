@@ -1,0 +1,171 @@
+{
+  "id": "bakery",
+  "title": "Second Shift",
+  "role": "Night baker",
+  "tagline": "A 60-year-old bakery in a city that never sleeps.",
+  "statLabels": {
+    "heart": "Heart",
+    "coin": "Coin",
+    "bonds": "Bonds",
+    "spirit": "Craft"
+  },
+  "startStats": { "heart": 55, "coin": 40, "bonds": 50, "spirit": 45 },
+  "facts": {
+    "fed_kid": "Arjun waits by the back door.",
+    "met_chain": "You met with the chain bakery.",
+    "apprentice": "Arjun is learning to bake."
+  },
+  "chapters": [
+    {
+      "title": "Three A.M.",
+      "cards": [
+        {
+          "id": "bk-1-1",
+          "speaker": "The back door",
+          "text": "3 a.m. A teenager asks for yesterday's bread. Mr. Rao, the owner, sells it in the morning at half price.",
+          "a": {
+            "label": "Give it free",
+            "effects": { "bonds": 5, "coin": -5 },
+            "sets": ["fed_kid"],
+            "result": "He takes the loaf like it might vanish. \"Thanks,\" he says, already half gone.",
+            "later": "The kid, Arjun, now waits by the back door every night. He's started sweeping up."
+          },
+          "b": {
+            "label": "Point to the sign",
+            "effects": { "coin": 5, "heart": -5 },
+            "result": "He reads it twice, then leaves without a word.",
+            "later": "The kid never came back. You catch yourself looking for him."
+          }
+        },
+        {
+          "id": "bk-1-2",
+          "speaker": "Gloria",
+          "text": "Your sourdough starter, Gloria, smells off.",
+          "a": {
+            "label": "Nurse her for three days",
+            "effects": { "spirit": 10, "coin": -10 },
+            "result": "You feed her carefully, discard carefully, wait.",
+            "later": "Gloria came back stronger. The crust has never been better."
+          },
+          "b": {
+            "label": "Start fresh",
+            "effects": { "coin": 5, "spirit": -5 },
+            "result": "You wash the jar. Something ends with the rinse water.",
+            "later": "The new starter is fine. Mr. Rao says the bread tastes 'polite'."
+          }
+        },
+        {
+          "id": "bk-1-3",
+          "speaker": "The flour store",
+          "text": "A rat in the flour store. Mr. Rao is asleep upstairs.",
+          "a": {
+            "label": "Wake him",
+            "effects": { "bonds": 5, "heart": -5 },
+            "result": "He comes down in slippers, already assessing the damage.",
+            "later": "Mr. Rao now trusts you with the spare keys."
+          },
+          "b": {
+            "label": "Handle it yourself",
+            "effects": { "spirit": 5, "heart": -5 },
+            "result": "You deal with it quietly. Two sacks don't make it.",
+            "later": "You threw out two sacks. Mr. Rao never found out."
+          }
+        }
+      ]
+    },
+    {
+      "title": "Offers After Midnight",
+      "cards": [
+        {
+          "id": "bk-2-1",
+          "speaker": "A recruiter",
+          "text": "A chain bakery offers you head baker, double pay, starting Monday.",
+          "a": {
+            "label": "Take the meeting",
+            "effects": { "coin": 15, "bonds": -10 },
+            "sets": ["met_chain"],
+            "result": "You say you'll listen. The call ends with a calendar invite.",
+            "later": "Word got back to Mr. Rao. He hasn't mentioned it, which is worse."
+          },
+          "b": {
+            "label": "Turn it down",
+            "effects": { "bonds": 10, "coin": -5 },
+            "result": "You hang up before they finish the pitch.",
+            "later": "Mr. Rao gave you a raise he couldn't afford."
+          }
+        },
+        {
+          "id": "bk-2-2",
+          "requires": "fed_kid",
+          "speaker": "Arjun",
+          "text": "Arjun asks if he can learn to bake.",
+          "a": {
+            "label": "Teach him",
+            "effects": { "heart": 10, "coin": -5 },
+            "sets": ["apprentice"],
+            "result": "You hand him an apron two sizes too big.",
+            "later": "Arjun's first loaf was terrible. His third sold out."
+          },
+          "b": {
+            "label": "Not now",
+            "effects": { "heart": -5 },
+            "result": "He nods like he expected it. The broom still moves.",
+            "later": "Arjun got a job at the chain bakery across the street."
+          }
+        }
+      ]
+    },
+    {
+      "title": "What the Line Remembers",
+      "cards": [
+        {
+          "id": "bk-3-1",
+          "speaker": "The front window",
+          "text": "A food blogger posts your cardamom bun. A line forms at 5 a.m.",
+          "a": {
+            "label": "Bake double, sleep less",
+            "effects": { "coin": 15, "heart": -15 },
+            "result": "Flour dusts every surface. Dawn arrives without you noticing.",
+            "later": "You made a month's rent in a week and slept through two Sundays."
+          },
+          "b": {
+            "label": "Sell out and close early",
+            "effects": { "heart": 10, "coin": -5 },
+            "result": "You flip the sign while people are still hoping.",
+            "later": "'Sold out by 8' became the bakery's legend."
+          }
+        },
+        {
+          "id": "bk-3-2",
+          "speaker": "Mr. Rao",
+          "text": "Mr. Rao asks if you'd ever want to own the place.",
+          "a": {
+            "label": "Say yes",
+            "effects": { "bonds": 10, "coin": -10 },
+            "result": "He smiles like he'd been waiting for that word.",
+            "later": "The papers are drawn up. He keeps calling the second oven 'yours'."
+          },
+          "b": {
+            "label": "Say you're not sure",
+            "effects": { "heart": 5, "bonds": -5 },
+            "result": "He looks at the floor, then the ovens, then you.",
+            "later": "He nodded and started talking to his nephew instead."
+          }
+        }
+      ]
+    }
+  ],
+  "endings": [
+    {
+      "if": "bonds>=65",
+      "text": "The sign gets repainted with two names on it."
+    },
+    {
+      "if": "coin>=70",
+      "text": "The chain buys the bakery and makes you its face. The bread is fine. It isn't yours."
+    },
+    {
+      "text": "You still bake at 3 a.m. The city still doesn't sleep. Some nights that's enough."
+    }
+  ]
+}

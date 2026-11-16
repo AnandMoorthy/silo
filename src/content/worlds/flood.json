@@ -1,0 +1,126 @@
+{
+  "id": "flood",
+  "title": "Flood Year",
+  "role": "Village teacher",
+  "tagline": "You're the only teacher in a river village, and the water is rising.",
+  "statLabels": {
+    "heart": "Heart",
+    "coin": "Supplies",
+    "bonds": "Village",
+    "spirit": "Hope"
+  },
+  "startStats": { "heart": 55, "coin": 35, "bonds": 50, "spirit": 50 },
+  "facts": {
+    "grain_store": "The school's back room holds the grain.",
+    "offer_open": "An NGO offer letter sits unanswered."
+  },
+  "chapters": [
+    {
+      "title": "Water at the Steps",
+      "cards": [
+        {
+          "id": "fl-1-1",
+          "speaker": "The school",
+          "text": "The river is a foot from the school steps. Cancel classes?",
+          "a": {
+            "label": "Keep teaching",
+            "effects": { "spirit": 10, "coin": -5 },
+            "result": "Boots splash. Chalk still writes.",
+            "later": "The kids call it the floating school. Attendance went up."
+          },
+          "b": {
+            "label": "Close the school",
+            "effects": { "heart": 5, "bonds": -5 },
+            "result": "You lock the door against brown water and wait.",
+            "later": "Three older kids went to work on the boats instead."
+          }
+        },
+        {
+          "id": "fl-1-2",
+          "speaker": "The headman",
+          "text": "The headman wants the school as a grain store.",
+          "a": {
+            "label": "Give him the back room",
+            "effects": { "bonds": 10, "spirit": -5 },
+            "sets": ["grain_store"],
+            "result": "Sacks stack where desks used to be.",
+            "later": "The grain stayed dry. The village fed itself."
+          },
+          "b": {
+            "label": "Refuse",
+            "effects": { "spirit": 5, "bonds": -10 },
+            "result": "He leaves angry. The classroom stays a classroom.",
+            "later": "The grain rotted in a barn. Some people blame you."
+          }
+        },
+        {
+          "id": "fl-1-3",
+          "speaker": "A city NGO",
+          "text": "A city NGO offers you a safe job downriver.",
+          "a": {
+            "label": "Stay",
+            "effects": { "bonds": 10, "coin": -5 },
+            "result": "You thank them and put the letter away.",
+            "later": "The village painted your name on the new boat."
+          },
+          "b": {
+            "label": "Ask them to wait",
+            "effects": { "heart": 5 },
+            "sets": ["offer_open"],
+            "result": "You buy time. The letter stays on the desk.",
+            "later": "The offer letter sits on your desk, unanswered."
+          }
+        }
+      ]
+    },
+    {
+      "title": "The Night the Levee Speaks",
+      "cards": [
+        {
+          "id": "fl-2-1",
+          "speaker": "The levee",
+          "text": "The levee might break tonight.",
+          "a": {
+            "label": "Move everyone to the school roof",
+            "effects": { "bonds": 15, "heart": -10 },
+            "result": "Ladders, blankets, names checked twice in the dark.",
+            "later": "Ninety people slept on the roof. Nobody was lost."
+          },
+          "b": {
+            "label": "Trust the levee",
+            "effects": { "heart": 5, "spirit": -10 },
+            "result": "You listen to the river all night and do not sleep.",
+            "later": "The levee held, just. You didn't sleep."
+          }
+        },
+        {
+          "id": "fl-2-2",
+          "requires": "offer_open",
+          "speaker": "The NGO",
+          "text": "The NGO calls a final time.",
+          "a": {
+            "label": "Take it",
+            "effects": { "coin": 20, "bonds": -15 },
+            "result": "You say yes before the line can break.",
+            "later": "You teach in the city now. The village sends you a photo every monsoon."
+          },
+          "b": {
+            "label": "Decline for good",
+            "effects": { "spirit": 10 },
+            "result": "You end the call and open the stove door.",
+            "later": "You burned the letter. It felt like the right fire."
+          }
+        }
+      ]
+    }
+  ],
+  "endings": [
+    {
+      "if": "bonds>=60",
+      "text": "When the water goes down, they rebuild the school first."
+    },
+    {
+      "text": "The river takes the low fields and leaves the village. So does half of it."
+    }
+  ]
+}

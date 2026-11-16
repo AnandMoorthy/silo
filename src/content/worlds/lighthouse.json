@@ -1,0 +1,192 @@
+{
+  "id": "lighthouse",
+  "title": "The Last Keeper",
+  "role": "Keeper of a lighthouse",
+  "tagline": "A lighthouse on an island the ferries stopped visiting.",
+  "statLabels": {
+    "heart": "Heart",
+    "coin": "Supplies",
+    "bonds": "Bonds",
+    "spirit": "The Light"
+  },
+  "startStats": { "heart": 50, "coin": 30, "bonds": 40, "spirit": 60 },
+  "facts": {
+    "ines_friend": "Ines calls every evening.",
+    "tomas_here": "Tomas lives in the oil shed.",
+    "read_letter": "You read the soaked letter.",
+    "leaving": "A date is circled on the calendar."
+  },
+  "chapters": [
+    {
+      "title": "The Voice on the Radio",
+      "cards": [
+        {
+          "id": "lh-1-1",
+          "speaker": "Ines, on the radio",
+          "text": "The radio crackles. A woman, Ines, on a fishing boat: \"Is anyone still on that rock?\"",
+          "a": {
+            "label": "Answer her",
+            "effects": { "bonds": 10, "spirit": 5 },
+            "sets": ["ines_friend"],
+            "result": "She laughs, relieved. The static softens around her voice.",
+            "later": "Ines calls every evening now. She calls you 'the voice on the rock'."
+          },
+          "b": {
+            "label": "Stay silent",
+            "effects": { "heart": 5, "bonds": -5 },
+            "result": "The static fades. The boat's engine grows distant.",
+            "later": "Ines stopped calling. Her boat passes without slowing."
+          }
+        },
+        {
+          "id": "lh-1-2",
+          "speaker": "The shore",
+          "text": "A crate washes ashore: tinned food and a soaked letter addressed to the last keeper.",
+          "a": {
+            "label": "Read the letter",
+            "effects": { "heart": -5, "spirit": 10 },
+            "sets": ["read_letter"],
+            "result": "Ink bleeds, but enough remains. You sit with it a long time.",
+            "later": "The letter was from the old keeper's daughter. She writes that she's coming in spring."
+          },
+          "b": {
+            "label": "Burn it for warmth",
+            "effects": { "coin": 10 },
+            "result": "The paper curls. The tins stack neatly beside the stove.",
+            "later": "The food lasted the month. Nobody will ever know what the letter said."
+          }
+        },
+        {
+          "id": "lh-1-3",
+          "speaker": "The lamp",
+          "text": "The lamp motor grinds. Fix it now in the storm, or wait for calm?",
+          "a": {
+            "label": "Climb up now",
+            "effects": { "spirit": 10, "heart": -10 },
+            "result": "Rain needles your face. The motor catches on the third try.",
+            "later": "The light held all night. A trawler made it home because of it."
+          },
+          "b": {
+            "label": "Wait it out",
+            "effects": { "spirit": -10, "heart": 5 },
+            "result": "You listen to the wind and hope the sea stays empty.",
+            "later": "A trawler ran aground in the dark. Everyone lived, but the mainland noticed."
+          }
+        }
+      ]
+    },
+    {
+      "title": "Who Comes Ashore",
+      "cards": [
+        {
+          "id": "lh-2-1a",
+          "requires": "ines_friend",
+          "speaker": "Ines, on the radio",
+          "text": "Ines asks if her brother Tomas can hide here for a week. He owes money to the wrong people.",
+          "a": {
+            "label": "Let him come",
+            "effects": { "bonds": 15, "coin": -10 },
+            "sets": ["tomas_here"],
+            "result": "She exhales like she'd been holding it. \"He'll be quiet. I swear.\"",
+            "later": "Tomas sleeps in the oil shed and fixes everything he touches."
+          },
+          "b": {
+            "label": "Say no",
+            "effects": { "coin": 5, "bonds": -10 },
+            "result": "Silence on the channel. Then: \"Understood.\"",
+            "later": "Ines is polite on the radio now. Just polite."
+          }
+        },
+        {
+          "id": "lh-2-1b",
+          "requires": "!ines_friend",
+          "speaker": "A stranger at the pier",
+          "text": "A boat moors without asking. A man, Tomas, begs to stay a week.",
+          "a": {
+            "label": "Let him stay",
+            "effects": { "bonds": 10, "coin": -10 },
+            "sets": ["tomas_here"],
+            "result": "He nods once and carries a thin bag up the path.",
+            "later": "Tomas turned out to be Ines's brother. She started calling to thank you."
+          },
+          "b": {
+            "label": "Send him off",
+            "effects": { "heart": -5 },
+            "result": "His boat turns. The wake flattens against the rocks.",
+            "later": "You saw his boat again, heading for the mainland police dock."
+          }
+        },
+        {
+          "id": "lh-2-2",
+          "speaker": "Mainland official",
+          "text": "A mainland official radios: the light is being automated. Apply to stay, or take a pension?",
+          "a": {
+            "label": "Fight to stay",
+            "effects": { "spirit": 15, "coin": -5 },
+            "result": "You fill every form twice. Your hand cramps around the pen.",
+            "later": "They granted one more year. The paperwork says 'provisional'."
+          },
+          "b": {
+            "label": "Take the pension",
+            "effects": { "coin": 15, "spirit": -15 },
+            "sets": ["leaving"],
+            "result": "They sound pleased. The channel goes quiet after.",
+            "later": "A date is circled on the calendar. Your last day."
+          }
+        }
+      ]
+    },
+    {
+      "title": "What the Island Remembers",
+      "cards": [
+        {
+          "id": "lh-3-1",
+          "speaker": "The tower",
+          "text": "The tower paint is peeling. It was red in 1902.",
+          "a": {
+            "label": "Paint it red",
+            "effects": { "heart": 10, "bonds": 5 },
+            "result": "Red returns under your brush, stubborn and bright.",
+            "later": "Ships radio in just to say they like the red."
+          },
+          "b": {
+            "label": "Keep it white",
+            "effects": { "coin": 5, "heart": -5 },
+            "result": "You scrape and seal. Clean. Correct. Quiet.",
+            "later": "The inspector ticked every box and left without a word."
+          }
+        },
+        {
+          "id": "lh-3-2",
+          "speaker": "The storm",
+          "text": "A storm cuts the radio. A boat's lights are out past the reef.",
+          "a": {
+            "label": "Row out with a lantern",
+            "effects": { "bonds": 10, "heart": -10 },
+            "result": "Oars bite black water. The lantern swings like a second heart.",
+            "later": "It was Ines. She tells everyone on the coast."
+          },
+          "b": {
+            "label": "Keep the light steady",
+            "effects": { "spirit": 10 },
+            "result": "You stay with the lamp. Beam and beam and beam.",
+            "later": "The boat found the channel by your light alone."
+          }
+        }
+      ]
+    }
+  ],
+  "endings": [
+    {
+      "if": "bonds>=60",
+      "text": "The island has a Sunday market now. You're not a keeper any more, just a neighbour."
+    },
+    {
+      "if": "spirit>=70",
+      "text": "The mainland gives up on automation. The light is yours for as long as you want it."
+    },
+    {
+      "text": "One spring the ferry comes back. You watch it from the gallery and decide not to wave."
+    }
+  ]
+}

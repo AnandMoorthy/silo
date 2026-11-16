@@ -1,0 +1,126 @@
+{
+  "id": "signal",
+  "title": "Signal",
+  "role": "Late-night radio host",
+  "tagline": "Tonight a caller says she's phoning from 2041.",
+  "statLabels": {
+    "heart": "Heart",
+    "coin": "Ratings",
+    "bonds": "Listeners",
+    "spirit": "Nerve"
+  },
+  "startStats": { "heart": 50, "coin": 40, "bonds": 45, "spirit": 50 },
+  "facts": {
+    "june_on_air": "June's call went out on air.",
+    "promised": "You promised not to say her name."
+  },
+  "chapters": [
+    {
+      "title": "A Call from Later",
+      "cards": [
+        {
+          "id": "sg-1-1",
+          "speaker": "June",
+          "text": "The caller, June, says the town's bridge will close next spring.",
+          "a": {
+            "label": "Keep her on air",
+            "effects": { "coin": 15, "spirit": 5 },
+            "sets": ["june_on_air"],
+            "result": "You leave the mic open. The board lights stay hot.",
+            "later": "The clip went around town. Half think it's a stunt."
+          },
+          "b": {
+            "label": "Cut the call",
+            "effects": { "heart": 5, "coin": -5 },
+            "result": "Dead air for two seconds. Then the next track.",
+            "later": "She called the station landline at 4 a.m. and left no message."
+          }
+        },
+        {
+          "id": "sg-1-2",
+          "speaker": "Your producer",
+          "text": "Your producer wants to sell the June story to a city station.",
+          "a": {
+            "label": "Sell it",
+            "effects": { "coin": 10, "bonds": -10 },
+            "result": "You agree. The clip leaves town before dawn.",
+            "later": "City vans parked outside the station for a week."
+          },
+          "b": {
+            "label": "Keep it local",
+            "effects": { "bonds": 10 },
+            "result": "You shake your head. The story stays on this frequency.",
+            "later": "The diner put a radio on the counter for your show."
+          }
+        },
+        {
+          "id": "sg-1-3",
+          "speaker": "June",
+          "text": "June asks you not to tell anyone her name.",
+          "a": {
+            "label": "Promise",
+            "effects": { "heart": 10 },
+            "sets": ["promised"],
+            "result": "You say it into the dark booth. She hears you mean it.",
+            "later": "She trusts you now. She calls at the same time every night."
+          },
+          "b": {
+            "label": "Make no promises",
+            "effects": { "spirit": 5, "heart": -5 },
+            "result": "You stay careful. The line cools.",
+            "later": "She hasn't called since."
+          }
+        }
+      ]
+    },
+    {
+      "title": "What Comes of Listening",
+      "cards": [
+        {
+          "id": "sg-2-1",
+          "requires": "june_on_air",
+          "speaker": "The mayor",
+          "text": "The mayor demands you stop 'spreading panic'.",
+          "a": {
+            "label": "Refuse on air",
+            "effects": { "spirit": 15, "bonds": 5 },
+            "result": "You say it live. The phone lines light up.",
+            "later": "The bridge got inspected. They found the crack June described."
+          },
+          "b": {
+            "label": "Agree quietly",
+            "effects": { "coin": 5, "spirit": -10 },
+            "result": "You soften the copy. The mayor's aide sounds pleased.",
+            "later": "The mayor sends a fruit basket. The bridge is still unchecked."
+          }
+        },
+        {
+          "id": "sg-2-2",
+          "speaker": "June",
+          "text": "June says one more thing: who you'll be in 2041. Do you want to know?",
+          "a": {
+            "label": "Ask",
+            "effects": { "heart": -10, "spirit": 10 },
+            "result": "You lean into the mic. She tells you.",
+            "later": "You can't stop thinking about what she said. You've started acting like it."
+          },
+          "b": {
+            "label": "Hang up first",
+            "effects": { "heart": 10 },
+            "result": "You kill the line before the sentence arrives.",
+            "later": "You still don't know. Some nights that's a gift."
+          }
+        }
+      ]
+    }
+  ],
+  "endings": [
+    {
+      "if": "spirit>=65",
+      "text": "The bridge is fixed before spring. Nobody can prove why, but everyone tunes in now."
+    },
+    {
+      "text": "The calls stop. You keep the 2 a.m. slot open, just in case."
+    }
+  ]
+}
